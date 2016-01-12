@@ -99,11 +99,11 @@
 <p>They&#39;re all pretty much the same. And to be honest I can&#39;t think of a good reason to select a confidence level that isn&#39;t 95%.</p>
 
 <blockquote>
-<p>\[\text{Estimator} \pm \text{&quot;2&quot;} \sqrt{\text{Standard Error}}\]</p>
+<p>\[\text{Estimator} \pm \text{&quot;2&quot;} \text{Standard Error}\]</p>
 </blockquote>
 
 <blockquote>
-<p>&quot;Standard Error&quot; is short for &quot;the standard deviation of the estimator&quot;.</p>
+<p>&quot;Standard Error&quot; is short for &quot;the estimated standard deviation of the estimator&quot;. For example, \(\frac{s}{\sqrt{n}}\).</p>
 </blockquote>
 
 </article></slide><slide class=''><hgroup><h2>Comments on hypothesis testing</h2></hgroup><article  id="comments-on-hypothesis-testing">
@@ -125,11 +125,11 @@
 
 </article></slide><slide class='segue dark nobackground'><hgroup class = 'auto-fadein'><h2>Inference with two independent numerical samples (9.8 and 10.5)</h2></hgroup><article  id="inference-with-two-independent-numerical-samples-9.8-and-10.5">
 
-</article></slide><slide class=''><hgroup><h2>The population model(s)</h2></hgroup><article  id="the-population-models">
+</article></slide><slide class=''><hgroup><h2>The population model(s)</h2></hgroup><article  id="the-population-models" class="small">
 
 <ul>
 <li><p>Populations \(N(\mu_1, \sigma_1^2)\) and \(N(\mu_2, \sigma_2^2)\)</p></li>
-<li><p>Equivalent: \(Y_{ij} = \mu_i + \varepsilon_{ij}\) with \(\varepsilon_{ij}\sim N(0, \sigma_i^2)\) and \(i\in\{1,2\}\)</p></li>
+<li><p>I prefer to go straight to the samples: \(Y_{ij} = \mu_i + \varepsilon_{ij}\) with \(\varepsilon_{ij}\sim N(0, \sigma_i^2)\) with \(i\in\{1,2\}\) and \(j\in \{1,2,\ldots,n_i\}\).</p></li>
 <li><p>Main interest: the difference between \(\mu_1\) and \(\mu_2\).</p></li>
 </ul>
 
@@ -181,7 +181,7 @@
 </ul>
 
 <ul class = 'build'>
-<li>There is  reliable method to formally test the difference in variance between two independent populations.</li>
+<li>There is <strong>no</strong> reliable method to formally test the difference in variance between two independent populations.</li>
 </ul>
 
 </article></slide><slide class=''><hgroup><h2>Example (9.40 from text)</h2></hgroup><article  id="example-9.40-from-text">
