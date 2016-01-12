@@ -1,0 +1,110 @@
+---
+title: "MIE237"
+author: "Neil Montgomery"
+date: '2016-01-12'
+output:
+  ioslides_presentation: 
+    css: styles.css
+    transition: faster
+---
+\newcommand{\Var}[1]{\text{Var}\left( #1 \right)}
+\newcommand{\E}[1]{E\left( #1 \right)}
+\newcommand{\Sample}[1]{#1_1,\ldots,#1_n}
+\newcommand{\od}[2]{\overline #1_{#2\cdot}}
+
+## Comments on confidence intervals
+
+They're all pretty much the same. And to be honest I can't think of a good reason to select a confidence level that isn't 95\%. 
+
+> $$\text{Estimator} \pm \text{"2"} \sqrt{\text{Standard Error}}$$
+
+> "Standard Error" is short for "the standard deviation of the estimator".
+
+## Comments on hypothesis testing
+
+* You learned the basics and everything was mathematically correct, but the context tended to be artificial ("one-sample") and as such things were possibly baffling.
+* There are two distinct approaches:
+    + "Classical" with a rejection region and a "reject/not reject" decision-theoretic framework.
+    + p-value
+* But then people try to take a p-value and draw a "reject/not reject" conclusion anyway. P-values are better interpreted as "strength of evidence".
+
+>* "One-sided alternatives"...based on the hopes and dreams of the experimenter...mathematically valid but scientific nonsense.
+
+# Inference with two independent numerical samples (9.8 and 10.5)
+
+## The population model(s) 
+
+* Populations $N(\mu_1, \sigma_1^2)$ and $N(\mu_2, \sigma_2^2)$
+
+* Equivalent: $Y_{ij} = \mu_i + \varepsilon_{ij}$ with $\varepsilon_{ij}\sim
+N(0, \sigma_i^2)$ and $i\in\{1,2\}$
+
+* Main interest: the difference between $\mu_1$ and $\mu_2$.
+
+> * Two cases:
+    + Equal variances: $\sigma^2_1 = \sigma^2_2$ so we just call them both $\sigma^2$ (this is the "special case".)
+    + Unequal variances, which is typically the default implemented in software and is more realistic.
+    
+> * Samples: $Y_{11},\ldots,Y_{1n_1}$ and $Y_{21},\ldots,Y_{2n_2}$
+
+> * $\od{Y}{1} - \od{Y}{2} \sim N\left(\mu_1 - \mu_2, \sigma^2\left(\frac{1}{n_1} + \frac{1}{n_2}
+\right)\right)$
+
+## "The Key Fact" - equal variance version { .build }
+
+> $$\frac{\left(\od{Y}{1} - \od{Y}{2}\right)
+- \left(\mu_1 - \mu_2\right)}{
+ \sigma\sqrt{\frac{1}{n_1} + \frac{1}{n_2}
+}} \sim N(0,1)$$
+
+> We need to estimate $\sigma$. Let's pool the data from both samples:
+
+> $$S^2_p = \frac{(n_1-1)S^2_1 + (n_2 - 1)S^2_2}{(n_1-1) + (n_2-1)}$$
+
+> Key fact: $$\frac{\left(\od{Y}{1} - \od{Y}{2}\right)
+- \left(\mu_1 - \mu_2\right)}{
+ S_p\sqrt{\frac{1}{n_1} + \frac{1}{n_2}
+}} \sim t_{(n_1 - 1) + (n_2 - 1)}$$
+
+## "The Key Fact" eq. var. model assumptions
+
+>* The Key Fact is approximately true as long as \textit{both} sample sizes are
+"big enough"" (also checking normal plots of both samples), and the true
+population variances are equal (check boxplots and sample SDs, allow for plenty
+of difference, say 3:1 even.)
+
+>* There is \textit{no} reliable method to formally test the difference
+in variance between two independent populations.
+
+## Example (9.40 from text)
+
+In a study conducted at Virginia Tech on the
+development of ectomycorrhizal, a symbiotic relationship
+between the roots of trees and a fungus, in which
+minerals are transferred from the fungus to the trees
+and sugars from the trees to the fungus, 20 northern
+red oak seedlings exposed to the fungus Pisolithus tinctorus
+were grown in a greenhouse. All seedlings were
+planted in the same type of soil and received the same
+amount of sunshine and water. Half received no nitrogen
+at planting time, to serve as a control, and the
+other half received 368 ppm of nitrogen in the form
+NaNO3. The stem weights, in grams, at the end of 140
+days were recorded...
+
+## 9.40 continues
+
+```{r}
+library(rio)
+nitro <- import("Ex09.40.txt")
+t.test(nitro$NoNitrogen, nitro$Nitrogen, var.equal = TRUE)
+```
+
+## 9.40 with data in "real" form
+
+```{r}
+library(tidyr)
+nitro_tidy <- gather(nitro, treatment, weight)
+t.test(weight ~ treatment, data=nitro_tidy, var.equal = TRUE)
+```
+
