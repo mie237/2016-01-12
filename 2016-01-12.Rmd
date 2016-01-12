@@ -16,7 +16,7 @@ output:
 
 They're all pretty much the same. And to be honest I can't think of a good reason to select a confidence level that isn't 95\%. 
 
-> $$\text{Estimator} \pm \text{"2"} \sqrt{\text{Standard Error}}$$
+> $$\text{Estimator} \pm \text{"2"} \text{Standard Error}$$
 
 > "Standard Error" is short for "the standard deviation of the estimator".
 
