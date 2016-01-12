@@ -18,7 +18,7 @@ They're all pretty much the same. And to be honest I can't think of a good reaso
 
 > $$\text{Estimator} \pm \text{"2"} \text{Standard Error}$$
 
-> "Standard Error" is short for "the standard deviation of the estimator".
+> "Standard Error" is short for "the estimated standard deviation of the estimator". For example, $\frac{s}{\sqrt{n}}$.
 
 ## Comments on hypothesis testing
 
@@ -32,12 +32,12 @@ They're all pretty much the same. And to be honest I can't think of a good reaso
 
 # Inference with two independent numerical samples (9.8 and 10.5)
 
-## The population model(s) 
+## The population model(s) { .small }
 
 * Populations $N(\mu_1, \sigma_1^2)$ and $N(\mu_2, \sigma_2^2)$
 
-* Equivalent: $Y_{ij} = \mu_i + \varepsilon_{ij}$ with $\varepsilon_{ij}\sim
-N(0, \sigma_i^2)$ and $i\in\{1,2\}$
+* I prefer to go straight to the samples: $Y_{ij} = \mu_i + \varepsilon_{ij}$ with $\varepsilon_{ij}\sim
+N(0, \sigma_i^2)$ with $i\in\{1,2\}$ and $j\in \{1,2,\ldots,n_i\}$. 
 
 * Main interest: the difference between $\mu_1$ and $\mu_2$.
 
@@ -73,7 +73,7 @@ N(0, \sigma_i^2)$ and $i\in\{1,2\}$
 population variances are equal (check boxplots and sample SDs, allow for plenty
 of difference, say 3:1 even.)
 
->* There is \textit{no} reliable method to formally test the difference
+>* There is **no** reliable method to formally test the difference
 in variance between two independent populations.
 
 ## Example (9.40 from text)
